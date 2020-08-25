@@ -44,13 +44,15 @@ var overallScores = [
     }
 ];
 
-function calcSum(score1, score2) {
-    var sum = score1 + score2;
-    return sum;
-}
+// this calculates the sum of two inputs, probably superfluous.
+// function calcSum(score1, score2) {
+//     var sum = score1 + score2;
+//     return sum;
+// }
 
+// judgement routine, calculate score and grade for student
 function judge(student) {
-    var totalScore = calcSum(student.score1, student.score2);
+    var totalScore = student.score1 + student.score2;
     if (totalScore >= 51) {
         for (var x = 0; x < overallScores.length; x++) {
             if (totalScore >= overallScores[x].score) {
@@ -64,6 +66,7 @@ function judge(student) {
     }
 }
 
+// loop and judge
 for (var i = 0; i < students.length; i++) {
     var student = students[i];
     judge(student)
