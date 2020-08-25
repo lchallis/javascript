@@ -44,23 +44,29 @@ var overallScores = [
     }
 ];
 
-// this calculates the sum of two inputs, probably superfluous.
-// function calcSum(score1, score2) {
-//     var sum = score1 + score2;
-//     return sum;
-// }
+// set a passing threshold, this really should be based off the overallScores array somehow.
+var passingScore = 51;
 
 // judgement routine, calculate score and grade for student
 function judge(student) {
+
+    // sum the scores
     var totalScore = student.score1 + student.score2;
-    if (totalScore >= 51) {
+
+    // make sure student meets threshold, this is bad because it is effectively magic int; should use overallScores array somehow. 
+    if (totalScore >= passingScore) {
+
+        // loop the scores array until the totalScore is equal or greater than the score property of the overallScores object
         for (var x = 0; x < overallScores.length; x++) {
             if (totalScore >= overallScores[x].score) {
+                // log some shit
                 console.log(student.name + " has a score of " + totalScore + " they get a " + overallScores[x].grade + " Grade")
+                // ditch the loop once you've got the result
                 break;
             }
         }
     }
+    // if under threshold do this, again, bad because not based of overallScore.
     else {
         console.log(student.name + " is a gronk and failed with a score of " + totalScore);
     }
